@@ -4,8 +4,17 @@
 
 <template>
   <div>
-    <h1 class="text-3xl font-bold underline">Hello, Moment!</h1>
-    <a-button type="primary">提交</a-button>
+    <div class="mb-4">
+      <div>
+        <router-link to="/">Go to Moment</router-link>
+      </div>
+      <div>
+        <router-link to="/login">Go to Login</router-link>
+      </div>
+    </div>
+    <article>
+      <router-view></router-view>
+    </article>
   </div>
 </template>
 

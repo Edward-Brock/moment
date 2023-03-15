@@ -9,6 +9,9 @@ Booop Moment 服务端：[点击前往](https://github.com/Edward-Brock/moment-s
 - 前端
    - [Vue](https://vuejs.org/)
    - [Vite](https://vitejs.dev/)
+   - [Vue Router](https://router.vuejs.org/)
+   - [Tailwind CSS](https://tailwindcss.com/)
+   - [Sass](https://sass-lang.com/)
 - 服务端
    - [Nest.js](https://nestjs.com/)
    - [TypeORM](https://typeorm.io/)
