@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import Header from '../../components/Moment/Header.vue'
 
 </script>
 
 <template>
   <div>
-    <h1>Moment</h1>
+    <Header/>
   </div>
 </template>
 

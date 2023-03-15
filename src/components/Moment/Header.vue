@@ -4,10 +4,10 @@
 
 <template>
   <div class="mx-auto max-w-3xl">
-    <router-view></router-view>
+    <h1>Moment Header</h1>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
