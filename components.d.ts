@@ -9,6 +9,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ASpace: typeof import('ant-design-vue/es')['Space']
+    Footer: typeof import('./src/components/Moment/Footer.vue')['default']
     Header: typeof import('./src/components/Moment/Header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
