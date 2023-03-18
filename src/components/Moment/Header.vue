@@ -32,7 +32,7 @@ onMounted(() => {
   <div class="relative mx-auto max-w-3xl max-h-64">
     <div class="bg-cover bg-no-repeat bg-center bg-center max-w-3xl h-64 rounded-b-lg"
          :style="{backgroundImage: `url(${optionInfo.background})`}"></div>
-    <div class="absolute top-4 right-10">
+    <div class="absolute top-4 right-5">
       <router-link to="/login">
         <a-space>
           <camera-filled :style="{fontSize: '24px', color: '#fff'}"/>
@@ -40,9 +40,9 @@ onMounted(() => {
       </router-link>
     </div>
     <!-- 朋友圈顶部昵称 -->
-    <div class="absolute bottom-4 right-40 text-2xl font-bold text-white text-shadow">{{ optionInfo.name }}</div>
+    <div class="absolute bottom-3 right-32 text-2xl font-bold text-white text-shadow">{{ optionInfo.name }}</div>
     <!-- 朋友圈顶部头像 -->
-    <div class="absolute -bottom-6 right-10 w-24 h-24 bg-local bg-cover bg-center rounded-lg ring-4 ring-white"
+    <div class="absolute -bottom-6 right-5 w-20 h-20 bg-local bg-cover bg-center rounded-lg ring-4 ring-white"
          :style="{backgroundImage: `url(${optionInfo.avatar})`}"></div>
   </div>
 </template>

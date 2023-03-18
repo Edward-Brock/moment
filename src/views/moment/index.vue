@@ -5,7 +5,7 @@ import Footer from '@/components/Moment/Footer.vue'
 </script>
 
 <template>
-  <div class="select-none">
+  <div class="mx-auto max-w-3xl">
     <Header/>
     <Footer/>
   </div>
