@@ -22,7 +22,7 @@ const onLoginInfo = async () => {
     // console.log(response)
     if (response.code === 0) {
       useTokenStore().setToken(response.data.token)
-      router.push('/dashboard')
+      router.push('/dashboard/index')
     }
     return
   })

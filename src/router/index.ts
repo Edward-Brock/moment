@@ -4,6 +4,8 @@ import Login from '../views/login/index.vue'
 import Dashboard from '../views/dashboard/index.vue'
 import Article from '../views/article/index.vue'
 import { useTokenStore } from '@/store'
+import DashboardHome from '@/components/dashboard/Home/DashboardHome.vue'
+import DashboardSetting from '@/components/dashboard/Setting/DashboardSetting.vue'
 
 const routes = [
   {
@@ -17,6 +19,16 @@ const routes = [
   {
     path: '/dashboard',
     component: Dashboard,
+    children: [
+      {
+        path: 'index',
+        component: DashboardHome,
+      },
+      {
+        path: 'setting',
+        component: DashboardSetting,
+      },
+    ],
     meta: {
       requireLogin: true,
     },

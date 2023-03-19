@@ -10,8 +10,10 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ASpace: typeof import('ant-design-vue/es')['Space']
+    DashboardHome: typeof import('./src/components/dashboard/Home/DashboardHome.vue')['default']
+    DashboardSetting: typeof import('./src/components/dashboard/Setting/DashboardSetting.vue')['default']
     Footer: typeof import('./src/components/Moment/Footer.vue')['default']
-    Header: typeof import('./src/components/Moment/Header.vue')['default']
+    Header: typeof import('./src/components/dashboard/Header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

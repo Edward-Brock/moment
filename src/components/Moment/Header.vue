@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
 import { getOptionInfo } from '@/apis/moment'
-import { CameraFilled } from '@ant-design/icons-vue';
+import { CameraFilled } from '@ant-design/icons-vue'
 
 // 记录 option 信息
 let optionInfo = reactive({
@@ -34,7 +34,7 @@ onMounted(() => {
     <div class="bg-cover bg-no-repeat bg-center bg-center max-w-3xl h-64 rounded-b-lg"
          :style="{backgroundImage: `url(${optionInfo.background})`}"></div>
     <div class="absolute top-4 right-5">
-      <router-link to="/dashboard">
+      <router-link to="/dashboard/index">
         <a-space>
           <camera-filled :style="{fontSize: '24px', color: '#fff'}"/>
         </a-space>
