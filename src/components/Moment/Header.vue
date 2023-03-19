@@ -10,7 +10,8 @@ let optionInfo = reactive({
   background: null,
 })
 
-console.log(import.meta.env)
+// 查看当前环境变量
+// console.log(import.meta.env)
 
 /**
  * 获取配置中的名称、头像及背景
@@ -33,7 +34,7 @@ onMounted(() => {
     <div class="bg-cover bg-no-repeat bg-center bg-center max-w-3xl h-64 rounded-b-lg"
          :style="{backgroundImage: `url(${optionInfo.background})`}"></div>
     <div class="absolute top-4 right-5">
-      <router-link to="/login">
+      <router-link to="/dashboard">
         <a-space>
           <camera-filled :style="{fontSize: '24px', color: '#fff'}"/>
         </a-space>

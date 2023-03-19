@@ -1,15 +1,52 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Moment from '../views/moment/index.vue'
 import Login from '../views/login/index.vue'
+import Dashboard from '../views/dashboard/index.vue'
+import Article from '../views/article/index.vue'
+import { useTokenStore } from '@/store'
 
 const routes = [
-  {path: '/', component: Moment},
-  {path: '/login', component: Login},
+  {
+    path: '/',
+    component: Moment,
+  },
+  {
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '/dashboard',
+    component: Dashboard,
+    meta: {
+      requireLogin: true,
+    },
+  },
+  {
+    path: '/article',
+    component: Article,
+    meta: {
+      requireLogin: true,
+    },
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireLogin)) {  // 判断该路由是否需要登录权限
+    if (useTokenStore().getToken()) {  // 判断当前用户的登录信息loginInfo是否存在
+      next();
+    } else {
+      next({
+        path: '/login',
+      })
+    }
+  } else {
+    next();
+  }
 })
 
 export default router
