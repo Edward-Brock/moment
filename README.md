@@ -10,6 +10,7 @@ Booop Moment 服务端：[点击前往](https://github.com/Edward-Brock/moment-s
   - [Vue](https://vuejs.org/)
   - [Vite](https://vitejs.dev/)
   - [Vue Router](https://router.vuejs.org/)
+  - [Pinia](https://pinia.vuejs.org/)
   - [Axios](https://axios-http.com/)
   - [Tailwind CSS](https://tailwindcss.com/)
   - [Sass](https://sass-lang.com/)

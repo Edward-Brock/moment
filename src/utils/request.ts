@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { message } from 'ant-design-vue'
 import router from '@/router'
 import { useTokenStore } from '@/store'
+import 'ant-design-vue/dist/antd.css'
 
 const BaseURL = import.meta.env.VITE_APP_BASE_URL;
 
@@ -31,6 +32,11 @@ const config = {
   timeout: RequestEnums.TIMEOUT as number,
   // 跨域时候允许携带凭证
   withCredentials: true,
+  headers: {
+    // 设置后端需要的传参类型
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'X-Requested-With': 'XMLHttpRequest',
+  },
 }
 
 class RequestHttp {
@@ -48,11 +54,11 @@ class RequestHttp {
      */
     this.service.interceptors.request.use(
         (config: any) => {
-          const token = useTokenStore().getToken() || '';
+          const token = useTokenStore().getToken();
           return {
             ...config,
             headers: {
-              'token': token, // 请求头中携带token信息
+              'Authorization': token, // 请求头中携带token信息
               // 'x-access-token': token, // 请求头中携带token信息
             },
           }
@@ -72,7 +78,7 @@ class RequestHttp {
           const {data, config} = response; // 解构
           if (data.code === RequestEnums.OVERDUE) {
             // 登录信息失效，应跳转到登录页面，并清空本地的token
-            localStorage.setItem('token', '');
+            useTokenStore().cleanToken()
             router.replace({
               path: '/login',
             })
@@ -93,9 +99,9 @@ class RequestHttp {
           if (!window.navigator.onLine) {
             message.error('网络连接失败');
             // 可以跳转到错误页面，也可以不做操作
-            // return router.replace({
-            //   path: '/404'
-            // });
+            return router.replace({
+              path: '/404',
+            });
           }
         },
     )
