@@ -131,6 +131,10 @@ class RequestHttp {
     return this.service.put(url, params);
   }
 
+  patch<T>(url: string, params?: object): Promise<ResultData<T>> {
+    return this.service.patch(url, params);
+  }
+
   delete<T>(url: string, params?: object): Promise<ResultData<T>> {
     return this.service.delete(url, {params});
   }
