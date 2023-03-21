@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
-import { getOptionInfo } from '@/apis/moment'
 import { patchSettingInfo } from '@/apis/dashboard/setting'
+import { useOptionStore } from '@/store/option'
 
 let optionInfo = reactive([
   {id: 1, option_name: 'moment_name', option_value: '', isModified: false},
   {id: 2, option_name: 'moment_avatar', option_value: '', isModified: false},
   {id: 3, option_name: 'moment_background', option_value: '', isModified: false},
 ])
-
-let modifiedOptionInfo = reactive([])
 
 /**
  * 将更新的值传回数据库中
@@ -31,19 +29,14 @@ async function submitHandler() {
 }
 
 onMounted(() => {
-  onOptionInfo()
+  /**
+   * 获取配置中的名称、头像及背景
+   */
+  const onOptionInfo = useOptionStore().getOption()
+  for (const item in optionInfo) {
+    optionInfo[item].option_value = onOptionInfo[item].option_value
+  }
 })
-
-/**
- * 获取配置中的名称、头像及背景
- */
-const onOptionInfo = async () => {
-  await getOptionInfo().then((response: any) => {
-    optionInfo[0].option_value = response[0].option_value
-    optionInfo[1].option_value = response[1].option_value
-    optionInfo[2].option_value = response[2].option_value
-  })
-}
 </script>
 
 <template>
@@ -57,10 +50,11 @@ const onOptionInfo = async () => {
       <div class="mt-5 md:col-span-2 md:mt-0">
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-            <div class="flex justify-between max-sm:flex-col">
-              <div class="basis-2/3">
-                <div class="grid grid-cols-2 gap-6 mb-4">
-                  <div class="col-span-3 sm:col-span-2">
+
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-3 sm:col-span-2">
+                <div class="mb-4">
+                  <div class="sm:col-span-3">
                     <label for="moment-name" class="block text-sm font-medium leading-6 text-gray-900">网站名称</label>
                     <div class="mt-2 flex rounded-md shadow-sm">
                       <input type="text" name="moment-name" id="moment-name"
@@ -71,7 +65,7 @@ const onOptionInfo = async () => {
                   </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-6 mb-4">
+                <div class="mb-4">
                   <div class="col-span-3 sm:col-span-2">
                     <label for="moment-avatar"
                            class="block text-sm font-medium leading-6 text-gray-900">网站头像</label>
@@ -98,15 +92,31 @@ const onOptionInfo = async () => {
                 </div>
               </div>
 
-              <div class="max-sm:mt-8">
-                <label class="block text-sm font-medium leading-6 text-gray-900">预览头像</label>
-                <div class="mt-2 flex items-center">
+              <div class="col-span-2 sm:col-span-1">
+                <div class="grid grid-cols-2">
+                  <div class="col-span-2 sm:col-span-2">
+                    <label class="block text-sm font-medium leading-6 text-gray-900">网站头像预览</label>
+                    <div class="mt-2 flex items-center">
                   <span class="inline-block h-24 w-24 overflow-hidden rounded-lg bg-gray-100">
                     <img class="h-full w-full text-gray-300" :src="optionInfo[1].option_value || ''" fill="currentColor"
                          viewBox="0 0 24 24"/>
                   </span>
+                    </div>
+                  </div>
+
+                  <div class=" grid col-span-2 mt-4 max-sm:mt-8">
+                    <label class="block text-sm font-medium leading-6 text-gray-900">网站背景图预览</label>
+                    <div class="mt-2 flex items-center">
+                      <span class="inline-block overflow-hidden rounded-lg max-w-xs max-h-80 bg-gray-100">
+                        <img class="bg-cover bg-center bg-no-repeat text-gray-300"
+                             :src="optionInfo[2].option_value || ''" fill="currentColor"
+                             viewBox="0 0 24 24"/>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
+
             </div>
           </div>
           <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">

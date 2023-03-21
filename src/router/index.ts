@@ -2,10 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import Moment from '../views/moment/index.vue'
 import Login from '../views/login/index.vue'
 import Dashboard from '../views/dashboard/index.vue'
-import Article from '../views/article/index.vue'
+import Article from '../components/dashboard/Article/CreateArticle.vue'
 import { useTokenStore } from '@/store'
 import DashboardHome from '@/components/dashboard/Home/DashboardHome.vue'
 import DashboardSetting from '@/components/dashboard/Setting/DashboardSetting.vue'
+import CreateArticle from '@/components/dashboard/Article/CreateArticle.vue'
 
 const routes = [
   {
@@ -28,13 +29,17 @@ const routes = [
         path: 'setting',
         component: DashboardSetting,
       },
+      {
+        path: 'article',
+        component: CreateArticle,
+      },
     ],
     meta: {
       requireLogin: true,
     },
   },
   {
-    path: '/article',
+    path: '/Article',
     component: Article,
     meta: {
       requireLogin: true,

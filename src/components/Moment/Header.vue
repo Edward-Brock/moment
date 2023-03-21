@@ -2,6 +2,7 @@
 import { onMounted, reactive } from 'vue'
 import { getOptionInfo } from '@/apis/moment'
 import { CameraFilled } from '@ant-design/icons-vue'
+import { useOptionStore } from '@/store/option'
 
 // 记录 option 信息
 let optionInfo = reactive({
@@ -21,6 +22,7 @@ const onOptionInfo = async () => {
     optionInfo.name = response[0].option_value
     optionInfo.avatar = response[1].option_value
     optionInfo.background = response[2].option_value
+    useOptionStore().setOption(response)
   })
 }
 
