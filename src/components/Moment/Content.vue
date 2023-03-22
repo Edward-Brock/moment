@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getArticleInfo } from '@/apis/moment'
+import { getArticleInfo, getArticleLikeInfo } from '@/apis/moment'
 import { onMounted, ref } from 'vue'
 import moment from 'moment'
 import 'moment/dist/locale/zh-cn'
@@ -7,6 +7,17 @@ import 'moment/dist/locale/zh-cn'
 moment.locale('zh-cn')
 
 const articleInfo = ref()
+
+/**
+ * 点击获取传递的 item 值，将其点赞数传至服务器并在本地进行累加
+ * @param item
+ */
+function getArticleId(item: any) {
+  // console.log(item)
+  getArticleLikeInfo(item.article_id).then((response: any) => {
+    item.article_like++
+  })
+}
 
 function jumpWebsite(url: string) {
   window.open(url, '_self')
@@ -42,7 +53,7 @@ onMounted(() => {
         <div class="text-gray-900">{{ item.article_content }}</div>
         <div class="flex justify-between items-center">
           <div class="text-sm text-gray-400 mt-2">{{ moment(item.article_date).fromNow() }}</div>
-          <div class="text-gray-400">❤ {{ item.article_like }}</div>
+          <div class="text-gray-400" @click="getArticleId(item)">❤ {{ item.article_like }}</div>
         </div>
       </div>
     </div>
