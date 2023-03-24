@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { getArticleInfo, getArticleLikeInfo } from '@/apis/moment'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import moment from 'moment'
 import 'moment/dist/locale/zh-cn'
+import MdEditor from 'md-editor-v3'
+import 'md-editor-v3/lib/style.css'
 
 moment.locale('zh-cn')
 
 const articleInfo = ref()
+
+const articleType: any = {
+  normal: '普通内容',
+  advertisement: '推广内容',
+}
 
 /**
  * 点击获取传递的 item 值，将其点赞数传至服务器并在本地进行累加
@@ -39,21 +46,29 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="mx-6 my-16">
-    <div class="flex" v-for="item in articleInfo">
+  <div class="mx-4 my-16">
+    <div class="flex my-8" v-for="item in articleInfo">
       <!-- 头像 -->
-      <img class="w-14 h-14 rounded-lg mr-4" :src="item.article_avatar">
+      <img class="w-10 h-10 rounded mr-4" :src="item.article_avatar">
       <!-- 内容 -->
-      <div>
-        <div class="cursor-pointer">
-          <div class="font-bold text-lg text-blue-900 block" @click="jumpWebsite(item.article_website)">
+      <div class="grow">
+        <div class="flex items-center">
+          <div class="cursor-pointer font-bold text-lg text-blue-800 block mr-2"
+               @click="jumpWebsite(item.article_website)">
             {{ item.article_author }}
           </div>
+          <div class="text-xs bg-gray-200 text-white p-0.5 rounded"
+               v-if="articleType[item.article_type] === articleType.advertisement">
+            推广
+          </div>
         </div>
-        <div class="text-gray-900">{{ item.article_content }}</div>
+        <div class="text-gray-900">
+          <MdEditor class="" v-model="item.article_content"
+                    :previewOnly="true"/>
+        </div>
         <div class="flex justify-between items-center">
-          <div class="text-sm text-gray-400 mt-2">{{ moment(item.article_date).fromNow() }}</div>
-          <div class="text-gray-400" @click="getArticleId(item)">❤ {{ item.article_like }}</div>
+          <div class="text-xs text-gray-400">{{ moment(item.article_date).fromNow() }}</div>
+          <div class="text-gray-400 cursor-pointer" @click="getArticleId(item)">❤ {{ item.article_like }}</div>
         </div>
       </div>
     </div>

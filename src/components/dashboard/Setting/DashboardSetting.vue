@@ -2,6 +2,7 @@
 import { onMounted, reactive } from 'vue'
 import { patchSettingInfo } from '@/apis/dashboard/setting'
 import { useOptionStore } from '@/store/option'
+import { message } from 'ant-design-vue'
 
 let optionInfo = reactive([
   {id: 1, option_name: 'moment_name', option_value: '', isModified: false},
@@ -21,7 +22,10 @@ async function submitHandler() {
         option_value: object.option_value,
       }
       await patchSettingInfo(id, params).then((response: any) => {
-        console.log(response)
+        // console.log(response)
+        if (response.affected === 1) {
+          message.success('更新成功')
+        }
         return
       })
     }
