@@ -22,5 +22,23 @@ Booop Moment 服务端：[点击前往](https://github.com/Edward-Brock/moment-s
   - [log4js-node](https://github.com/log4js-node/log4js-node)
   - [cross-env](https://github.com/kentcdodds/cross-env)
 
+## 完成功能
+  - 前端
+    - [x] 昵称、头像、背景图、个性签名
+    - [x] 动态显示头像、昵称（点击跳转网址链接）、内容、内容标签
+    - [x] 发布天数
+    - [x] 点赞
+    - [ ] 评论
+  - 管理后台
+    - 仪表盘
+      - [x] 显示发布动态数量
+      - [ ] 显示各动态具体详细内容
+      - [x] 发布动态
+    - 设置
+      - [x] 修改网址名称
+      - [x] 修改网址头像
+      - [x] 修改网址背景
+      - [ ] 修改个性签名
+
 ## License
 [GNU General Public License v3.0](https://github.com/Edward-Brock/moment/blob/main/LICENSE)

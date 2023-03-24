@@ -9,7 +9,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ADivider: typeof import('ant-design-vue/es')['Divider']
     ASpace: typeof import('ant-design-vue/es')['Space']
+    ATable: typeof import('ant-design-vue/es')['Table']
+    ATag: typeof import('ant-design-vue/es')['Tag']
     Content: typeof import('./src/components/Moment/Content.vue')['default']
     CreateArticle: typeof import('./src/components/dashboard/Article/CreateArticle.vue')['default']
     DashboardHome: typeof import('./src/components/dashboard/Home/DashboardHome.vue')['default']

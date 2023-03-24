@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getArticleInfo, getArticleLikeInfo } from '@/apis/moment'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
+import { HeartFilled } from '@ant-design/icons-vue'
 import moment from 'moment'
 import 'moment/dist/locale/zh-cn'
 import MdEditor from 'md-editor-v3'
@@ -63,12 +64,16 @@ onMounted(() => {
           </div>
         </div>
         <div class="text-gray-900">
-          <MdEditor class="" v-model="item.article_content"
-                    :previewOnly="true"/>
+          <MdEditor v-model="item.article_content" :previewOnly="true"/>
         </div>
         <div class="flex justify-between items-center">
           <div class="text-xs text-gray-400">{{ moment(item.article_date).fromNow() }}</div>
-          <div class="text-gray-400 cursor-pointer" @click="getArticleId(item)">❤ {{ item.article_like }}</div>
+          <div class="text-gray-400 cursor-pointer" @click="getArticleId(item)">
+            <div class="flex justify-center items-center">
+                <heart-filled class="mr-1" :style="{fontSize: '14px', color: 'rgba(255, 0, 0, .75)'}"/>
+              {{ item.article_like }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
